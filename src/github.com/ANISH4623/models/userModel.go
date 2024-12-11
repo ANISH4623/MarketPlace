@@ -17,9 +17,11 @@ type User struct {
 
 type Product struct {
 	gorm.Model
+	ProductID   int     `json:"product_id" validate:"required,gte=1" gorm:"primary_key"`
 	Name        string  `json:"name" validate:"required"`
 	Description string  `json:"description" validate:"required"`
 	Price       float32 `json:"price" validate:"required"`
 	Quantity    int64   `json:"quantity" validate:"required"`
 	Image       string  `json:"Image"`
+	UserID      uint    `json:"user_id"`
 }
