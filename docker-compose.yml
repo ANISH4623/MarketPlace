@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  gin:
+    build: src/github.com/ANISH4623
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin1234
+      - MYSQL_DATABASE=MarketPlace
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin1234
+      MYSQL_DATABASE: MarketPlace
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin1234
