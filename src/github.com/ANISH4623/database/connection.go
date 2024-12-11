@@ -18,10 +18,11 @@ type DbInstance struct {
 var Database DbInstance
 
 func Connect() {
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
-		helpers.AppConfig.DB_HOST, helpers.AppConfig.DB_USER, helpers.AppConfig.DB_PASSWORD,
-		helpers.AppConfig.DB_NAME, helpers.AppConfig.DB_PORT)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		helpers.AppConfig.DB_USER, helpers.AppConfig.DB_PASSWORD, helpers.AppConfig.DB_HOST, helpers.AppConfig.DB_PORT,
+		helpers.AppConfig.DB_NAME)
 	fmt.Println(dsn)
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
