@@ -19,7 +19,7 @@ func UserResponse(user models.User) models.User {
 		Email:     user.Email,
 		Password:  user.Password,
 		Address:   user.Address,
-		Products:  nil,
+		Products:  user.Products,
 	}
 
 }
