@@ -15,12 +15,10 @@ FROM alpine:latest
 
 # Copy the built binary from the builder stage
 COPY --from=builder /github.com/ANISH4623/main /github.com/ANISH4623/main
-
+COPY --from=builder /github.com/ANISH4623/.env /github.com/ANISH4623/.env
 # Set the working directory
 WORKDIR /github.com/ANISH4623/
 
-# Expose the port on which the Gin app will listen
-EXPOSE 8080
 
 # Command to run the Gin app
 CMD ["./main"]

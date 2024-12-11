@@ -4,19 +4,22 @@ services:
   gin:
     build: src/github.com/ANISH4623
     ports:
-      - "8080:8080"
+      - "8080:80"
     depends_on:
       - db
     environment:
       - MYSQL_HOST=db
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin1234
-      - MYSQL_DATABASE=MarketPlace
-
+      - MYSQL_USER=${DB_USER}  # Use environment variable syntax with ${NAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - PORT=8080
   db:
     image: mysql:latest
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin1234
       MYSQL_DATABASE: MarketPlace
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin1234
+
